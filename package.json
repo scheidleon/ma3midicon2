@@ -1,0 +1,16 @@
+{
+  "name": "ma3midicon2",
+  "version": "0.0.1",
+  "description": "Script to translate Midicon2 MIDI Data to OSC for GrandMA3",
+  "main": "ma3midicon.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "easymidi": "^3.1.0",
+    "osc": "^2.4.4",
+    "websocket": "^1.0.35"
+  }
+}
