@@ -19,8 +19,8 @@ let grandmaster = 100, grandmasterfader = 127, BO = 0, keypressed = 0, matrixpag
 const udpPort = new osc.UDPPort({ localAddress: localip, localPort: localport, metadata: true });
 udpPort.open();
 
-console.log('MIDI inputs:', easymidi.getInputs());
-console.log('MIDI outputs:', easymidi.getOutputs());
+//console.log('MIDI inputs:', easymidi.getInputs());
+//console.log('MIDI outputs:', easymidi.getOutputs());
 
 const input = new easymidi.Input(midi_in);
 const output = new easymidi.Output(midi_out);
@@ -111,14 +111,15 @@ input.on('noteon', (msg) => {
 });
 console.log('Connecting to MA3PC ...');
 
-client.onerror = () => console.log('Connection Error');
+client.onerror = () => console.log('MA3 Websocket Connection Error');
 client.onopen = () => {
-    console.log('WebSocket Client Connected');
+    console.log('MA3 WebSocket Client Connected');
     client.send(JSON.stringify({ requestType: 'remoteState' }));
 };
 client.onclose = () => {
-    console.log('MA3 Connection Closed');
+    console.log('MA3 Websocket Connection Closed');
     input.close();
+    output.close();
     process.exit();
 };
 client.onmessage = function (e) {
